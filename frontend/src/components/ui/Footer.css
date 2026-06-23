@@ -1,0 +1,57 @@
+/* Footer.css — SchulHub site footer */
+
+.site-footer {
+  width: 100%;
+  padding: 2rem 1.5rem 1.5rem;
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  background: transparent;
+}
+
+.site-footer__inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.site-footer__disclaimer {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 520px;
+}
+
+.site-footer__links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.site-footer__links a {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.site-footer__links a:hover {
+  color: var(--text);
+}
+
+.site-footer__links span {
+  font-size: 0.8rem;
+  color: var(--border);
+  user-select: none;
+}
+
+.site-footer__copy {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-family: var(--mono, 'Space Mono', monospace);
+}

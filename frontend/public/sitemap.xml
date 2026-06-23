@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://schulhub.eu/</loc>
+    <lastmod>2026-06-17</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://schulhub.eu/login</loc>
+    <lastmod>2026-06-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://schulhub.eu/registrieren</loc>
+    <lastmod>2026-06-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://schulhub.eu/datenschutz</loc>
+    <lastmod>2026-06-17</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://schulhub.eu/impressum</loc>
+    <lastmod>2026-06-17</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://schulhub.eu/nutzungsbedingungen</loc>
+    <lastmod>2026-06-17</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>

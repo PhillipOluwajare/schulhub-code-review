@@ -1,0 +1,379 @@
+/* frontend/src/index.css
+ * Bauhaus Dark — DM Sans + Space Mono
+ * Mobile-first, iPhone SE (375px) compatible
+ *
+ * FIXES vs previous version:
+ * - iOS input zoom prevention: inputs/selects get min font-size 16px
+ * - overflow-x on BOTH html AND body (not just body — html scroll still caused horizontal scroll)
+ * - clamp() padding on legal pages at 375px
+ * - safe-area insets for iPhone home indicator
+ * - select elements styled consistently across browsers
+ */
+
+/* ── Google Fonts (deferred until 10+ users — CSP blocks, system fonts fallback below) ── */
+/* @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap'); */
+
+/* ── CSS Variables ───────────────────────────────────────────────────────── */
+
+:root,
+[data-theme="dark"] {
+  --bg:          #0f0f0f;
+  --surface:     #141414;
+  --surface-2:   #1a1a1a;
+  --text:        #e8e6e0;
+  --muted:       #666;
+  --accent:      #7F77DD;
+  --accent-dim:  rgba(127, 119, 221, 0.12);
+  --border:      #2a2a2a;
+  --radius:      8px;
+  --mono:        'Space Mono', ui-monospace, SFMono-Regular, 'Courier New', monospace;
+  --sans:        'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --danger:      #cc3333;
+  --danger-dim:  rgba(204, 51, 51, 0.08);
+  --success:     #2a7a4a;
+}
+
+[data-theme="light"] {
+  --bg:          #ffffff;
+  --surface:     #f4f4f4;
+  --surface-2:   #ebebeb;
+  --text:        #1a1a1a;
+  --muted:       #888;
+  --accent:      #6B63D9;
+  --accent-dim:  rgba(107, 99, 217, 0.1);
+  --border:      #e0e0e0;
+  --danger:      #c0392b;
+  --danger-dim:  rgba(192, 57, 43, 0.08);
+  --success:     #1a6a3a;
+}
+
+/* System preference fallback when no data-theme attribute is set */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg:          #ffffff;
+    --surface:     #f4f4f4;
+    --surface-2:   #ebebeb;
+    --text:        #1a1a1a;
+    --muted:       #888;
+    --accent:      #6B63D9;
+    --accent-dim:  rgba(107, 99, 217, 0.1);
+    --border:      #e0e0e0;
+    --danger:      #c0392b;
+    --danger-dim:  rgba(192, 57, 43, 0.08);
+    --success:     #1a6a3a;
+  }
+}
+
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Both html AND body — html overflow causes horizontal scroll even when body is hidden */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* Prevent font size adjustment on orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Safe area inset for iPhone home indicator */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  line-height: 1.2;
+  color: var(--text);
+}
+
+p {
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Form elements ───────────────────────────────────────────────────────── */
+
+/* CRITICAL: iOS Safari zooms in when input font-size < 16px.
+ * Setting 16px base prevents the zoom, keeping mobile UX intact.
+ * The actual visual size is controlled via component inline styles — this is a floor, not a ceiling. */
+input,
+textarea,
+select {
+  font-size: 16px;
+  font-family: var(--sans);
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  width: 100%;
+  transition: border-color 0.15s ease;
+  /* Remove iOS Safari default rounded corners + shadow */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--muted);
+}
+
+/* Select arrow (removed by -webkit-appearance: none — add it back) */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+input[type="date"],
+input[type="time"] {
+  color-scheme: dark;
+  cursor: pointer;
+}
+
+[data-theme="light"] input[type="date"],
+[data-theme="light"] input[type="time"] {
+  color-scheme: light;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  padding: 0;
+  -webkit-appearance: checkbox;
+  appearance: checkbox;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+button {
+  font-family: var(--sans);
+  font-size: 14px;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  /* Prevent iOS tap highlight */
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+  opacity: 0.88;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ── Legal pages ─────────────────────────────────────────────────────────── */
+
+.legal-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.legal-container {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 40px clamp(16px, 5vw, 40px) 80px;
+}
+
+.legal-nav {
+  margin-bottom: 32px;
+}
+
+.legal-back {
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.legal-back:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.legal-header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.legal-title {
+  font-size: clamp(28px, 5vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.legal-date {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.legal-section {
+  margin-bottom: 36px;
+}
+
+.legal-section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-section h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 20px 0 8px;
+  color: var(--text);
+}
+
+.legal-section p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section ul {
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+
+.legal-section li {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 6px;
+}
+
+.legal-section a {
+  color: var(--accent);
+  word-break: break-word;
+}
+
+.legal-section strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.legal-note {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 13px !important;
+}
+
+.legal-footer {
+  display: flex;
+  gap: 24px;
+  padding-top: 32px;
+  margin-top: 40px;
+  border-top: 1px solid var(--border);
+}
+
+.legal-footer a {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legal-footer a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ── Utility ─────────────────────────────────────────────────────────────── */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Mobile (375px iPhone SE) ────────────────────────────────────────────── */
+
+@media (max-width: 400px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Prevent any fixed-width child from causing horizontal scroll */
+  .legal-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .legal-title {
+    font-size: 26px;
+  }
+
+  .legal-section h2 {
+    font-size: 16px;
+  }
+
+  /* Ensure inputs fill width on tiny screens */
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-width: 0;
+  }
+}

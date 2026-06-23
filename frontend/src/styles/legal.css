@@ -1,0 +1,144 @@
+/* legal.css — shared styles for Impressum and Datenschutz pages */
+
+.legal-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  padding: 2rem 1.5rem 4rem;
+}
+
+.legal-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Nav */
+.legal-nav {
+  margin-bottom: 3rem;
+}
+
+.legal-back {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s ease;
+}
+
+.legal-back:hover {
+  color: var(--text);
+}
+
+/* Header */
+.legal-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.legal-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 0.5rem;
+  color: var(--text);
+}
+
+.legal-date {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+/* Sections */
+.legal-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.legal-section:last-of-type {
+  border-bottom: none;
+}
+
+.legal-section h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 1rem;
+  letter-spacing: 0.01em;
+}
+
+.legal-section h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 1.5rem 0 0.6rem;
+}
+
+.legal-section p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0 0 0.75rem;
+}
+
+.legal-section ul {
+  margin: 0 0 0.75rem 1.25rem;
+  padding: 0;
+}
+
+.legal-section ul li {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 0.3rem;
+}
+
+.legal-section a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.legal-section a:hover {
+  text-decoration: underline;
+}
+
+.legal-section strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.legal-note {
+  font-size: 0.8rem !important;
+  color: var(--muted) !important;
+  font-style: italic;
+}
+
+/* Page footer */
+.legal-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.legal-footer a {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  margin-right: 1.5rem;
+  transition: color 0.15s;
+}
+
+.legal-footer a:hover {
+  color: var(--text);
+}

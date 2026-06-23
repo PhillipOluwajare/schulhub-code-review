@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /noten
+Disallow: /noten-dev
+Disallow: /einstellungen
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://schulhub.eu/sitemap.xml
